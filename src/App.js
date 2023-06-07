@@ -42,7 +42,6 @@ const data = [
 const App = () => {
   const [Date, setDate] = useState("");
   const [Prediction, setPrediction] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("");
 
   return (
     <div>
