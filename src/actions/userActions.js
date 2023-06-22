@@ -11,7 +11,7 @@ export const listUsers = () => async (dispatch) => {
       });
 
       const { data } = await axios.get(
-        `/uc?export=download&id=1ibmr3WD7Jw6oLL6O_W390WojCLfCHw-k`
+        `https://drive.google.com/uc?export=download&id=1ibmr3WD7Jw6oLL6O_W390WojCLfCHw-k`
       );
 
       dispatch({
