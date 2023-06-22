@@ -13,6 +13,10 @@ const SearchBox = () => {
     e.preventDefault();
     if (keyword.trim()) {
       navigate(`/search/${keyword}?domain=${domain}&gender=${gender}&availability=${availability}`);
+      setKeyword('')
+      setDomain('')
+      setGender('')
+      setAvailability('')
     } else {
       navigate("/");
     }

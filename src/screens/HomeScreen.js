@@ -26,8 +26,24 @@ const HomeScreen = () => {
 
 
   useEffect(() => {
-    dispatch(listUsers(keyword, page));
-  }, [dispatch, keyword, page]);
+    dispatch(listUsers());
+  }, [dispatch]);
+
+  const filterUsers = () => {
+    return users
+      .filter((user) =>
+        key.toLowerCase() === "" ? user : user.first_name.toLowerCase().includes(key.toLowerCase())
+      )
+      .filter((user) =>
+        domain === "" ? user : user.domain.toLowerCase().includes(domain.toLowerCase())
+      )
+      .filter((user) =>
+        gender === "" ? user : user.gender.toLowerCase().includes(gender.toLowerCase())
+      )
+      .filter((user) =>
+        availability === "" ? user : String(user.available).toLowerCase() === availability.toLowerCase()
+      );
+  };
 
   return (
     <>
@@ -39,27 +55,7 @@ const HomeScreen = () => {
       ) : (
         <>
         <Row className="d-flex">
-            {users
-              .filter((user) => {
-                return key.toLowerCase() === ""
-                  ? user
-                  : (user.first_name.toLowerCase().includes(key));
-              })
-              .filter((user) => {
-                return domain === ""
-                  ? user
-                  : (user.domain.includes(domain));
-              })
-              .filter((user) => {
-                return gender === ""
-                  ? user
-                  : (user.gender.includes(gender));
-              })
-              .filter((user) => {
-                return availability === ""
-                  ? user
-                  : (String(user.available) === availability);
-              })
+            {filterUsers()
               .slice(first, last)
               .map((user) => (
                 <Col key={user.id} sm={12} md={6} lg={4} xl={3}>
@@ -68,9 +64,9 @@ const HomeScreen = () => {
               ))}
           </Row>
           <Paginate
-            pages={Math.ceil(users.length / pageSize)}
+            pages={Math.ceil(filterUsers().length / pageSize)}
             page={page}
-            keyword={key ? key : ""}
+            keyword={keyword ? keyword : ""}
           />
         </>
       )}

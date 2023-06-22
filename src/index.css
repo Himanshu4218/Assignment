@@ -11,7 +11,7 @@ body {
   margin: 5px;
 }
 
-tr a{
+a{
   text-decoration: none;
 }
 .team{
@@ -21,4 +21,11 @@ tr a{
 .navbar-nav a{
   color: white !important;
   padding-right: 200px !important;
+}
+
+@media (max-width: 787px) {
+  .d-flex{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
