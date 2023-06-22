@@ -1,4 +1,4 @@
-import axios from "axios";
+import { data } from "../data/user";
 import {
   USER_LIST_FAIL,
   USER_LIST_REQUEST,
@@ -9,10 +9,6 @@ export const listUsers = () => async (dispatch) => {
       dispatch({
         type: USER_LIST_REQUEST,
       });
-
-      const { data } = await axios.get(
-        `https://drive.google.com/uc?export=download&id=1ibmr3WD7Jw6oLL6O_W390WojCLfCHw-k`
-      );
 
       dispatch({
         type: USER_LIST_SUCCESS,
